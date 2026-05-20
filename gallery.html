@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery — Kenya School of Angels</title>
+  <meta name="description" content="Photos from the School of Angels in Sofia, Kenya — students, classes, and community life." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .gallery-page-hero {
+      background: linear-gradient(135deg, var(--brown-dark) 0%, #3C2A1A 100%);
+      padding: 140px 0 72px;
+      text-align: center;
+    }
+    .gallery-page-hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 12px 0 16px;
+    }
+    .gallery-page-hero p {
+      font-family: 'Arial', sans-serif;
+      color: rgba(255,255,255,.6);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .gallery-filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 32px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 68px;
+      z-index: 10;
+    }
+
+    .filter-btn {
+      font-family: 'Arial', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--brown-mid);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .filter-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .filter-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fff;
+    }
+
+    .full-gallery {
+      padding: 48px 0 96px;
+      background: var(--warm-white);
+    }
+
+    .masonry {
+      columns: 4;
+      column-gap: 12px;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .masonry-item:hover img { transform: scale(1.03); }
+
+    .masonry-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: .75rem;
+      padding: 24px 12px 10px;
+      opacity: 0;
+      transition: opacity .3s;
+      font-style: italic;
+    }
+
+    .masonry-item:hover .masonry-caption { opacity: 1; }
+
+    @media (max-width: 900px) { .masonry { columns: 3; } }
+    @media (max-width: 640px) { .masonry { columns: 2; } }
+    @media (max-width: 400px) { .masonry { columns: 1; } }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✦</div>
+        <div class="nav-logo-text" style="color:var(--brown-dark)">Kenya School<br>of Angels</div>
+      </a>
+      <ul class="nav-links" style="--link-color:var(--brown-mid)">
+        <li><a href="index.html#mission" style="color:var(--brown-mid)">Our Story</a></li>
+        <li><a href="index.html#needs" style="color:var(--brown-mid)">Current Needs</a></li>
+        <li><a href="gallery.html" style="color:var(--terracotta)">Gallery</a></li>
+        <li><a href="index.html#donate" class="nav-cta">Donate Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="gallery-page-hero">
+    <div class="container">
+      <div class="eyebrow" style="color:var(--gold-light)">School of Angels</div>
+      <h1>Life at the School</h1>
+      <p>Real moments from Sofia, Kenya — students, classes, friendships, and joy</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="gallery-filters">
+    <button class="filter-btn active" data-filter="all">All Photos</button>
+    <button class="filter-btn" data-filter="students">Students</button>
+    <button class="filter-btn" data-filter="classes">Classes</button>
+    <button class="filter-btn" data-filter="adventure">Adventures</button>
+    <button class="filter-btn" data-filter="community">Community</button>
+  </div>
+
+  <!-- Full Gallery -->
+  <section class="full-gallery">
+    <div class="container">
+      <div class="masonry" id="masonry">
+
+        <div class="masonry-item" data-cat="students adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075321.jpg" alt="Jumping for Joy" loading="lazy" />
+          <div class="masonry-caption">Jumping for Joy</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044421.jpg" alt="Form 1 and Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 1 and Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075816.jpg" alt="Students modeling" loading="lazy" />
+          <div class="masonry-caption">Students modeling</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075758.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="community">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_100412.jpg" alt="A Maasai Dance" loading="lazy" />
+          <div class="masonry-caption">A Maasai Dance</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075800.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075814.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075812.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073234.jpg" alt="The kids being adventurous" loading="lazy" />
+          <div class="masonry-caption">Being adventurous</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students community">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072444.jpg" alt="Paul and students messing around" loading="lazy" />
+          <div class="masonry-caption">Paul and students messing around</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075549.jpg" alt="Messing around" loading="lazy" />
+          <div class="masonry-caption">Messing around</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075040.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072558.jpg" alt="Just checking out the view" loading="lazy" />
+          <div class="masonry-caption">Just checking out the view</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075135.jpg" alt="The kids wanted selfies" loading="lazy" />
+          <div class="masonry-caption">The kids wanted selfies</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075136.jpg" alt="The kids wanted selfies" loading="lazy" />
+          <div class="masonry-caption">The kids wanted selfies</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072603.jpg" alt="Enjoying the view" loading="lazy" />
+          <div class="masonry-caption">Enjoying the view</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072044.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072042.jpg" alt="Students" loading="lazy" />
+          <div class="masonry-caption">Students</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072727.jpg" alt="Kids having fun" loading="lazy" />
+          <div class="masonry-caption">Kids having fun</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075157.jpg" alt="The kids wanted selfies" loading="lazy" />
+          <div class="masonry-caption">Selfie time</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075647.jpg" alt="Showing off their shoes" loading="lazy" />
+          <div class="masonry-caption">Showing off their shoes</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073240.jpg" alt="The kids being adventurous" loading="lazy" />
+          <div class="masonry-caption">Being adventurous</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075159.jpg" alt="The kids wanted selfies" loading="lazy" />
+          <div class="masonry-caption">Selfie time</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073304.jpg" alt="Just enjoying the scenery" loading="lazy" />
+          <div class="masonry-caption">Enjoying the scenery</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044533.jpg" alt="Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044535.jpg" alt="Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044410.jpg" alt="Form 1 and Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 1 &amp; Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072707.jpg" alt="Kids having fun" loading="lazy" />
+          <div class="masonry-caption">Kids having fun</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073010.jpg" alt="Best Friends" loading="lazy" />
+          <div class="masonry-caption">Best Friends</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075321.jpg" alt="Jumping for Joy" loading="lazy" />
+          <div class="masonry-caption">Jumping for Joy</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044222.jpg" alt="Form 1" loading="lazy" />
+          <div class="masonry-caption">Form 1</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_071942.jpg" alt="Form 1 and Form 2 on top of Mukalala Rocks" loading="lazy" />
+          <div class="masonry-caption">Form 1 &amp; 2 on Mukalala Rocks</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044220.jpg" alt="Form 1" loading="lazy" />
+          <div class="masonry-caption">Form 1</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044404.jpg" alt="Form 1 and Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 1 &amp; Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_074942.jpg" alt="Enjoying the view" loading="lazy" />
+          <div class="masonry-caption">Enjoying the view</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044330.jpg" alt="Form 1 and Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 1 &amp; Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_075152.jpg" alt="The kids wanted selfies" loading="lazy" />
+          <div class="masonry-caption">Selfie time</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073517.jpg" alt="Enjoying the view" loading="lazy" />
+          <div class="masonry-caption">Enjoying the view</div>
+        </div>
+
+        <div class="masonry-item" data-cat="adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_074945.jpg" alt="Enjoying the view" loading="lazy" />
+          <div class="masonry-caption">Enjoying the view</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044523.jpg" alt="Form 2" loading="lazy" />
+          <div class="masonry-caption">Form 2</div>
+        </div>
+
+        <div class="masonry-item" data-cat="classes students">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_044224.jpg" alt="Form 1" loading="lazy" />
+          <div class="masonry-caption">Form 1</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students adventure">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_073250.jpg" alt="The kids being adventurous" loading="lazy" />
+          <div class="masonry-caption">Being adventurous</div>
+        </div>
+
+        <div class="masonry-item" data-cat="students community">
+          <img src="https://kenyaschoolofangels.wordpress.com/wp-content/uploads/2016/06/20160508_072441.jpg" alt="Paul and students" loading="lazy" />
+          <div class="masonry-caption">Paul and students</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate Strip -->
+  <section style="background:var(--terracotta); padding:48px 0; text-align:center;">
+    <div class="container">
+      <h2 style="color:#fff; margin-bottom:12px;">Inspired by What You See?</h2>
+      <p style="font-family:'Arial',sans-serif; color:rgba(255,255,255,.8); margin-bottom:24px; font-size:1rem;">
+        Help us keep the lights on, the classrooms full, and the futures bright.
+      </p>
+      <a href="index.html#donate" class="btn btn-gold btn-lg">Donate Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding:24px 0; border-top:1px solid rgba(255,255,255,.08);">
+        <span style="font-family:'Arial',sans-serif; font-size:.8rem; color:rgba(255,255,255,.4);">
+          © 2024 Kenya School of Angels. All rights reserved.
+        </span>
+        <a href="index.html" style="font-family:'Arial',sans-serif; font-size:.8rem; color:rgba(255,255,255,.5);">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    // Filter buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.masonry-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.cat.includes(filter)) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
